@@ -6,6 +6,9 @@
 <html>
 <head>
 <script type="text/javascript" src="resources/assets/js/sockjs.js"></script>
+
+
+
 <script
 	src="http://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 
