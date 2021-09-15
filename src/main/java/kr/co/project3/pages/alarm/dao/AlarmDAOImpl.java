@@ -135,6 +135,15 @@ public class AlarmDAOImpl implements AlarmDAO {
 			return over_nwkdanger_check;
 		}
 	}
+	
+	public  List<AlarmSettingDTO> netusernum_over_check(){
+		
+		return session.selectList(NameSpace+"over_netusernum_check");
+	}
+	
+	public List<AlarmSettingDTO> portuser_over_check(){
+		return session.selectList(NameSpace+"over_portuser_check");
+	}
 
 	public void insertCpuAlarmLog(AlarmLogDTO ldto) {
 		session.insert(NameSpace+"insertCpuLog", ldto);
@@ -151,6 +160,16 @@ public class AlarmDAOImpl implements AlarmDAO {
 	public void insertNwAlarmLog(AlarmLogDTO ldto) {
 		session.insert(NameSpace+"insertNwLog", ldto);
 	}
+	
+
+	public void insertNetUserNum(AlarmLogDTO ldto) {
+		session.insert(NameSpace+"insertNetUserNumLog",ldto);
+		
+	};
+
+	public void insertPortUser(AlarmLogDTO ldto) {
+		session.insert(NameSpace+"insertPortUserLog",ldto);
+	};
 
 	public List<AlarmLogDTO> getAlarmLog(Criteria cri) {
 		return session.selectList(NameSpace+"selectAlarmLog", cri);

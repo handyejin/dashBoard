@@ -35,14 +35,16 @@
 		portuser = #{portuser},
 		date
 		=now()
-		where threshold.id = #{id}
+		where
+		threshold.id = #{id}
 
 	</update>
 	<select id="th_select" resultType="ThresholdDTO">
 		select
 		cpu_warning,cpu_danger,mem_warning,mem_danger,nw_warning,nw_danger,
 		disk_warning,disk_danger, netusernum, portuser from threshold
-		where threshold.id = #{id}
+		where
+		threshold.id = #{id}
 
 	</select>
 
@@ -170,9 +172,27 @@
 		where id=#{id}
 	</select>
 
+	<select id="over_netusernum_check" resultType="AlarmSettingDTO">
+<![CDATA[
+		select user.id, user.email, user.hp, threshold.ip, netdata1.netusernum as 'usage'
+		from user, netdata1,threshold
+		where netdata1.netusernum>=threshold.netusernum
+		order by netdata1.date
+		limit 1
+]]>
 
+	</select>
 
+	<select id="over_portuser_check" resultType="AlarmSettingDTO">
+<![CDATA[
+		select user.id, user.email, user.hp, threshold.ip, portdata.portuser as 'usage'
+		from user, portdata,threshold
+		where portdata.portuser>=threshold.portuser
+		order by portdata.date
+		limit 1;
+]]>
 
+	</select>
 
 	<update id="th_Check_update" parameterType="java.util.HashMap">
 		update threshold set
@@ -217,6 +237,17 @@
 		alarmLog(ip,resource,resourceUsage,date,level)
 		values(#{ip},
 		#{resource},#{resourceUsage},#{date},#{level});
+	</insert>
+	<insert id="insertNetUserNumLog">
+		insert into
+		alarmLog(ip,resource,resourceUsage,date)
+		values(#{ip},#{resource},#{resourceUsage},#{date});
+	</insert>
+	
+	<insert id="insertPortUserLog">
+		insert into
+		alarmLog(ip,resource,resourceUsage,date)
+		values(#{ip},#{resource},#{resourceUsage},#{date});
 	</insert>
 
 

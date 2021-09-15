@@ -12,34 +12,41 @@ import kr.co.project3.pages.alarm.dto.AlarmDTO;
 import kr.co.project3.pages.alarm.dto.AlarmLogDTO;
 import kr.co.project3.pages.alarm.dto.AlarmSettingDTO;
 
-public interface AlarmDAO
-{
+public interface AlarmDAO {
 
-    public abstract String selectIp(String s);
+	public abstract String selectIp(String s);
 
-    public abstract List<AlarmDTO> selectAlarm(String s);
+	public abstract List<AlarmDTO> selectAlarm(String s);
 
-    public abstract List<AlarmSettingDTO> cpu_over_check();
+	public abstract List<AlarmSettingDTO> cpu_over_check();
 
-    public abstract List<AlarmSettingDTO> mem_over_check();
+	public abstract List<AlarmSettingDTO> mem_over_check();
 
-    public abstract List<AlarmSettingDTO> nw_over_check();
+	public abstract List<AlarmSettingDTO> nw_over_check();
 
-    public abstract List<AlarmSettingDTO> disk_over_check();
+	public abstract List<AlarmSettingDTO> disk_over_check();
 
-    public abstract String get_email(String s);
+	public List<AlarmSettingDTO> netusernum_over_check();
 
-    public abstract void insertCpuAlarmLog(AlarmLogDTO alarmlogdto);
+	public List<AlarmSettingDTO> portuser_over_check();
 
-    public abstract void insertMemAlarmLog(AlarmLogDTO alarmlogdto);
+	public abstract String get_email(String s);
 
-    public abstract void insertDiskAlarmLog(AlarmLogDTO alarmlogdto);
+	public abstract void insertCpuAlarmLog(AlarmLogDTO alarmlogdto);
 
-    public abstract void insertNwAlarmLog(AlarmLogDTO alarmlogdto);
+	public abstract void insertMemAlarmLog(AlarmLogDTO alarmlogdto);
 
-    public abstract List<AlarmLogDTO> getAlarmLog(Criteria criteria);
+	public abstract void insertDiskAlarmLog(AlarmLogDTO alarmlogdto);
 
-    public abstract int countAlarm(String s);
+	public abstract void insertNwAlarmLog(AlarmLogDTO alarmlogdto);
 
-    public abstract List<AlarmLogDTO> getAlarmList4(String s);
+	public void insertNetUserNum(AlarmLogDTO ldto);
+
+	public void insertPortUser(AlarmLogDTO ldto);
+
+	public abstract List<AlarmLogDTO> getAlarmLog(Criteria criteria);
+
+	public abstract int countAlarm(String s);
+
+	public abstract List<AlarmLogDTO> getAlarmList4(String s);
 }

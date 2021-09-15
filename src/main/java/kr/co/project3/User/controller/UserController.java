@@ -143,7 +143,7 @@ public class UserController {
 		String title = "이메일 인증 ";
 		String content = (new StringBuilder(String.valueOf(System.getProperty("line.separator"))))
 				.append(System.getProperty("line.separator"))
-				.append("\uFFFD\u0233\uFFFD\uFFFD\u03FC\uFFFD\uFFFD\uFFFD. \uFFFD\uFFFD\uFFFD\uFFFD \uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD \343\uFFFD\uFFFD\uFFFD\u05BC\u017C\uFFFD \uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\u0574\u03F4\uFFFD.")
+				.append("\uFFFD\u0233\uFFFD\uFFFD\u03FC\uFFFD\uFFFD\uFFFD. \uFFFD\uFFFD\uFFFD\uFFFD .")
 				.append(System.getProperty("line.separator")).append(System.getProperty("line.separator"))
 				.append("\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\u0223\uFFFD\uFFFD ").append(dice)
 				.append("\uFFFD\u0534\u03F4\uFFFD.").append(System.getProperty("line.separator"))

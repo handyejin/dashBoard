@@ -10,19 +10,22 @@
 
 	<select id="usage_select" resultType="UsageDTO">
 		select cpuusage,
-		memusage,diskusage, nwusage
-		from Serverusage, UserServer
+		memusage,diskusage, netdata1.netusernum
+		from Serverusage,
+		UserServer,netdata1
 		where
-		UserServer.id =
-		#{id} and UserServer.ip = Serverusage.ip
+		UserServer.id = 2222 and UserServer.ip =
+		Serverusage.ip
 		order by Serverusage.date desc
-		limit 1
+		limit 1;
 	</select>
 
 	<select id="coreusage_select" resultType="UsageDTO">
-		select corename, coreusage
+		select corename,
+		coreusage
 		from coredata, UserServer
-		where UserServer.id=#{id} and coredata.ip=UserServer.ip
+		where UserServer.id=#{id} and
+		coredata.ip=UserServer.ip
 		and coredata.corename REGEXP '^[[:digit:]]+$'
 		order by date desc
 		limit 4

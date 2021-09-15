@@ -79,4 +79,12 @@ public class ServerInfoDTO
     private String hw;
     private String version;
     private int corenum;
+    private int portuser;
+	public int getPortuser() {
+		return portuser;
+	}
+
+	public void setPortuser(int portuser) {
+		this.portuser = portuser;
+	}
 }

@@ -26,6 +26,10 @@ public interface alarmService
     public  List<AlarmSettingDTO> disk_over_check();
 
     public  List<AlarmSettingDTO> nw_over_check();
+    
+    public  List<AlarmSettingDTO> netusernum_over_check();
+    
+    public  List<AlarmSettingDTO> portuser_over_check();
 
     public  String get_email(String s);
 
@@ -36,6 +40,10 @@ public interface alarmService
     public  void insertDiskAlarmLog(AlarmLogDTO alarmlogdto);
 
     public  void insertNwAlarmLog(AlarmLogDTO alarmlogdto);
+    
+    public void insertNetUserNum(AlarmLogDTO alarmlogdto);
+    
+    public void insertPortUser(AlarmLogDTO alarmlogdto);
 
     public  List<AlarmLogDTO>  getAlarmLog(Criteria criteria);
 

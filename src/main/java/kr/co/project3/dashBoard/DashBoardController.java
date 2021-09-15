@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.project3.User.dto.UserDTO;
 import kr.co.project3.dashBoard.dto.ServerInfoDTO;
+import kr.co.project3.dashBoard.dto.UsageDTO;
 import kr.co.project3.pages.alarm.controller.alarmController;
 import kr.co.project3.service.ServerService;
 
@@ -41,6 +42,14 @@ public class DashBoardController {
 			for (ServerInfoDTO sdto:list) {
 				System.out.println((new StringBuilder("ip:")).append(sdto.getIp()).toString());
 				System.out.println((new StringBuilder("version")).append(sdto.getVersion()).toString());
+			}
+			
+			for (int i = 0; i < list.size(); i++) {
+				
+				System.out.println(((ServerInfoDTO) list.get(i)).getPortuser());
+				System.out.println(((ServerInfoDTO) list.get(i)).getIp());
+				System.out.println(((ServerInfoDTO) list.get(i)).getHostname());
+				
 			}
 
 			model.addAttribute("list", list);

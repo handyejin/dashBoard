@@ -37,12 +37,13 @@
 		LIMIT #{pageStart}, #{perPageNum}
 
 	</select>
-	
+
 	<select id="select_info" resultType="ServerInfoDTO">
 		select info.ip, hostname, hw,osver, version, corenum
-		from info,UserServer
-		where UserServer.id =#{id} and info.ip = UserServer.ip
-
+		from
+		info,UserServer
+		where UserServer.id =#{id} and info.ip =
+		UserServer.ip;
 	</select>
 
 

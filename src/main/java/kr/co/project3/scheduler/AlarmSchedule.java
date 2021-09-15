@@ -32,10 +32,10 @@ public class AlarmSchedule {
 
 	@Autowired
 	private alarmService service;
-	
+
 	@Inject
 	JavaMailSender mailSender;
-	
+
 	public static boolean cpu_alert = false;
 	public static boolean mem_alert = false;
 	public static boolean disk_alert = false;
@@ -55,8 +55,6 @@ public class AlarmSchedule {
 
 	public void scheduleFixedDelayTask() throws IOException {
 		System.out.println("\uC2A4\uCF00\uC904\uB7EC \uC2DC\uC791");
-		cpu_alert = false;
-		ModelAndView mv = new ModelAndView();
 		HashMap<String, String> params = new HashMap<String, String>();
 		List<AlarmSettingDTO> check = service.cpu_over_check();
 		AlarmLogDTO ldto = new AlarmLogDTO();
@@ -194,7 +192,7 @@ public class AlarmSchedule {
 		HashMap<String, String> params = new HashMap<String, String>();
 		List<AlarmSettingDTO> check = service.disk_over_check();
 		AlarmLogDTO ldto = new AlarmLogDTO();
-		
+
 		if (!alarmController.empty(check).booleanValue()
 				&& !((AlarmSettingDTO) check.get(0)).getDate().equals(beforedate)) {
 			String id = ((AlarmSettingDTO) check.get(0)).getId();
@@ -315,6 +313,118 @@ public class AlarmSchedule {
 				System.out.println(e);
 			}
 		}
+	}
+
+	public void netusernum_check() throws IOException {
+
+		HashMap<String, String> params = new HashMap<String, String>();
+		List<AlarmSettingDTO> check = service.netusernum_over_check();
+		AlarmLogDTO ldto = new AlarmLogDTO();
+		if (!alarmController.empty(check).booleanValue()
+				&& !((AlarmSettingDTO) check.get(0)).getDate().equals(beforedate)) {
+			String id = ((AlarmSettingDTO) check.get(0)).getId();
+			String email = ((AlarmSettingDTO) check.get(0)).getEmail();
+			Timestamp date = ((AlarmSettingDTO) check.get(0)).getDate();
+			String hp = ((AlarmSettingDTO) check.get(0)).getHp();
+			float usage = ((AlarmSettingDTO) check.get(0)).getUsage();
+			String ip = ((AlarmSettingDTO) check.get(0)).getIp();
+			String setfrom = "yejin12241224@gmail.com";
+			String tomail = email;
+			String title = "";
+			String content = "";
+			String text = "";
+			
+			title = "네트워크 접속자수가 임계치를 초과하였습니다.";
+			text = (new StringBuilder(String.valueOf(ip))).append(
+					"네트워크 접속자수가 설정하신 임계치를 초과하였습니다.")
+					.append(System.getProperty("line.separator"))
+					.append("현재 네트워크 접속자수는 ").append(usage)
+					.append("입니다.").append(System.getProperty("line.separator"))
+					.append("현재시간은").append(date).append("입니다.")
+					.toString();
+			params.put(api_key, text);
+		
+			try {
+				javax.mail.internet.MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+				messageHelper.setFrom(setfrom);
+				messageHelper.setTo(tomail);
+				messageHelper.setSubject(title);
+				messageHelper.setText(text);
+				mailSender.send(message);
+				
+				params.put("to", hp);
+				params.put("from", "01062259554");
+				params.put("type", "SMS");
+				params.put("text", text);
+				
+				ldto.setResourceUsage(usage);
+				ldto.setIp(ip);
+				ldto.setDate(date);
+				ldto.setResource("netusernum");
+				service.insertNetUserNum(ldto);
+				beforedate = date;
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+	}
+
+	public void portuser_check() throws IOException {
+
+		HashMap<String, String> params = new HashMap<String, String>();
+		List<AlarmSettingDTO> check = service.portuser_over_check();
+		
+		AlarmLogDTO ldto = new AlarmLogDTO();
+		if (!alarmController.empty(check).booleanValue()
+				&& !((AlarmSettingDTO) check.get(0)).getDate().equals(beforedate)) {
+			String id = ((AlarmSettingDTO) check.get(0)).getId();
+			String email = ((AlarmSettingDTO) check.get(0)).getEmail();
+			Timestamp date = ((AlarmSettingDTO) check.get(0)).getDate();
+			String hp = ((AlarmSettingDTO) check.get(0)).getHp();
+			float usage = ((AlarmSettingDTO) check.get(0)).getUsage();
+			String ip = ((AlarmSettingDTO) check.get(0)).getIp();
+			String setfrom = "yejin12241224@gmail.com";
+			String tomail = email;
+			String title = "";
+			String content = "";
+			String text = "";
+			
+			title = "포트 사용자수가 임계치를 초과하였습니다.";
+			text = (new StringBuilder(String.valueOf(ip))).append(
+					"포트 사용자수가 임계치를 초과하였습니다.")
+					.append(System.getProperty("line.separator"))
+					.append("현재 포트 사용자수는 ").append(usage)
+					.append("입니다.").append(System.getProperty("line.separator"))
+					.append("현재시간은").append(date).append("입니다.")
+					.toString();
+			params.put(api_key, text);
+		
+			try {
+				javax.mail.internet.MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+				messageHelper.setFrom(setfrom);
+				messageHelper.setTo(tomail);
+				messageHelper.setSubject(title);
+				messageHelper.setText(text);
+				mailSender.send(message);
+				
+				params.put("to", hp);
+				params.put("from", "01062259554");
+				params.put("type", "SMS");
+				params.put("text", text);
+				
+				ldto.setResourceUsage(usage);
+				ldto.setIp(ip);
+				ldto.setDate(date);
+				ldto.setResource("netusernum");
+				service.insertPortUser(ldto);
+				beforedate = date;
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+
 	}
 
 }

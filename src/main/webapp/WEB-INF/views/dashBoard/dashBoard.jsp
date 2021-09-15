@@ -32,13 +32,15 @@
 #row_card {
 	height: 40%;
 }
-#tbody{
-	height:420px;
+
+#tbody {
+	height: 420px;
 }
+
 #dataTable {
 	margin-left: 30px;
 	width: 27%;
- 	height: 550px; 
+	height: 550px;
 	/* height:300px; */
 }
 
@@ -109,14 +111,22 @@
 }
 
 #card_container {
-	width: 70%;
+	z-index: 2; width : 70%;
 	height: 10%;
+	width: 70%;
 }
 
 #card_container1 {
 	width: 70%;
 	height: 10%;
 	bottom: 290px;
+}
+
+#nwusernum_div {
+	z-index: 1; width : 50px;
+	height: 50px;
+	background: white;
+	width: 50px;
 }
 </style>
 <script type="text/javascript">
@@ -310,7 +320,7 @@
 															fontSize : '20px',
 															'font-weight' : "bold"
 														},
-														text : 'Network'
+														text : 'Network 접속자수'
 													}
 												},
 												credits : {
@@ -606,7 +616,9 @@
 						<div id="container-cpu" class="chart-container"></div>
 						<div id="container-mem" class="chart-container"></div>
 						<div id="container-disk" class="chart-container"></div>
+						<div></div>
 						<div id="container-nw" class="chart-container"></div>
+						<div id="nwusernum_div"></div>
 					</figure>
 				</div>
 			</div>
@@ -627,7 +639,6 @@
 				<div class="card-body">
 					<div class="table-responsive">
 						<table class="table table-bordered" width="100%" cellspacing="0">
-
 							<c:forEach items="${list}" var="result">
 								<tbody id="tbody">
 									<tr>

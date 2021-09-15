@@ -20,86 +20,85 @@ import kr.co.project3.pages.alarm.dto.AlarmSettingDTO;
 //            alarmService
 
 @Component
-public class alarmServiceImpl
-    implements alarmService
-{
+public class alarmServiceImpl implements alarmService {
 
-    public alarmServiceImpl()
-    {
-    }
-    
-    @Autowired
-    AlarmDAO adao;
+	public alarmServiceImpl() {
+	}
 
-    public String selectIp(String id)
-    {
-        return adao.selectIp(id);
-    }
+	@Autowired
+	AlarmDAO adao;
 
-    public List<AlarmDTO> selectAlarm(String id)
-    {
-        return adao.selectAlarm(id);
-    }
+	public String selectIp(String id) {
+		return adao.selectIp(id);
+	}
 
-    public List<AlarmSettingDTO> cpu_over_check()
-    {
-        return adao.cpu_over_check();
-    }
+	public List<AlarmDTO> selectAlarm(String id) {
+		return adao.selectAlarm(id);
+	}
 
-    public List<AlarmSettingDTO> mem_over_check()
-    {
-        return adao.mem_over_check();
-    }
+	public List<AlarmSettingDTO> cpu_over_check() {
+		return adao.cpu_over_check();
+	}
 
-    public List<AlarmSettingDTO> disk_over_check()
-    {
-        return adao.disk_over_check();
-    }
+	public List<AlarmSettingDTO> mem_over_check() {
+		return adao.mem_over_check();
+	}
 
-    public List<AlarmSettingDTO> nw_over_check()
-    {
-        return adao.nw_over_check();
-    }
+	public List<AlarmSettingDTO> disk_over_check() {
+		return adao.disk_over_check();
+	}
 
-    public String get_email(String id)
-    {
-        return adao.get_email(id);
-    }
+	public List<AlarmSettingDTO> nw_over_check() {
+		return adao.nw_over_check();
+	}
 
-    public void insertCpuAlarmLog(AlarmLogDTO ldto)
-    {
-        adao.insertCpuAlarmLog(ldto);
-    }
+	public List<AlarmSettingDTO> netusernum_over_check() {
+		return adao.netusernum_over_check();
+	}
 
-    public void insertMemAlarmLog(AlarmLogDTO ldto)
-    {
-        adao.insertMemAlarmLog(ldto);
-    }
+	public List<AlarmSettingDTO> portuser_over_check() {
+		return adao.portuser_over_check();
+	}
 
-    public void insertDiskAlarmLog(AlarmLogDTO ldto)
-    {
-        adao.insertDiskAlarmLog(ldto);
-    }
+	public String get_email(String id) {
+		return adao.get_email(id);
+	}
 
-    public void insertNwAlarmLog(AlarmLogDTO ldto)
-    {
-        adao.insertNwAlarmLog(ldto);
-    }
+	public void insertCpuAlarmLog(AlarmLogDTO ldto) {
+		adao.insertCpuAlarmLog(ldto);
+	}
 
-    public List<AlarmLogDTO> getAlarmLog(Criteria cri)
-    {
-        return adao.getAlarmLog(cri);
-    }
+	public void insertMemAlarmLog(AlarmLogDTO ldto) {
+		adao.insertMemAlarmLog(ldto);
+	}
 
-    public int countAlarm(String id)
-    {
-        return adao.countAlarm(id);
-    }
+	public void insertDiskAlarmLog(AlarmLogDTO ldto) {
+		adao.insertDiskAlarmLog(ldto);
+	}
 
-    public List<AlarmLogDTO>  getAlarmList4(String id)
-    {
-        return adao.getAlarmList4(id);
-    }
+	public void insertNwAlarmLog(AlarmLogDTO ldto) {
+		adao.insertNwAlarmLog(ldto);
+	}
 
+	public void insertNetUserNum(AlarmLogDTO ldto) {
+
+		adao.insertNetUserNum(ldto);
+	}
+
+	public void insertPortUser(AlarmLogDTO ldto) {
+		adao.insertPortUser(ldto);
+	}
+
+	public List<AlarmLogDTO> getAlarmLog(Criteria cri) {
+		return adao.getAlarmLog(cri);
+	}
+
+	public int countAlarm(String id) {
+		return adao.countAlarm(id);
+	}
+
+	public List<AlarmLogDTO> getAlarmList4(String id) {
+		return adao.getAlarmList4(id);
+	}
 
 }

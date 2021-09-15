@@ -31,7 +31,7 @@
 	background-position: center;
 	position: absolute;
 	z-index: 5;
-	width: 45px;
+	width: 60px;
 	height: 35px;
 	left: 48rem;
 	border-radius: 4px;
@@ -54,6 +54,7 @@
 	width: 160px;
 	height: 35px;
 	left: 48rem;
+	
 	border-radius: 4px;
 	background: #185EE3;
 	background-color: #185EE3;
@@ -329,7 +330,9 @@ input::-webkit-slider-thumb {
 				<div class="card-header py-3">
 
 					<h6 class="m-0 font-weight-bold text-primary">
-						알림 설정 <input type="button" value="임계치 진단 받기" class="settingBtn1" />
+						알림 설정 <!-- <input type="button" value="임계치 진단 받기" class="settingBtn1" /> -->
+						<!--  <a class="settingBtn1" href="#page-top">임계치 진단 받기</a> -->
+						<button type="button" class="settingBtn1" onClick="location.href='threshold_check'">임계치 진단 받기</button>
 						<input type="submit" value="저장" class="settingBtn">
 
 					</h6>

@@ -93,14 +93,6 @@ public class WebSocketHandler extends TextWebSocketHandler
                         System.out.println("usageList\uBE44\uC5C7\uC2B4");
                     }
                 }
-				/*
-				 * final WebSocketHandler this$0; private final String val$id; private final
-				 * WebSocketSession val$session;
-				 * 
-				 * 
-				 * { this$0 = WebSocketHandler.this; id = s; session = websocketsession;
-				 * super(); }
-				 */
             }
 ;
             Timer timer = new Timer(true);

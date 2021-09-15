@@ -32,8 +32,11 @@ public class UsageDAOImpl implements UsageDAO {
 		udto.setCpuusage(((UsageDTO) list.get(0)).getCpuusage());
 		udto.setMemusage(((UsageDTO) list.get(0)).getMemusage());
 		udto.setDiskusage(((UsageDTO) list.get(0)).getDiskusage());
-		udto.setNwusage(((UsageDTO) list.get(0)).getNwusage());
+		udto.setNetusernum(((UsageDTO) list.get(0)).getNetusernum());
+		/* udto.setNwusage(((UsageDTO) list.get(0)).getNwusage()); */
+		
 		for (int i = 0; i < list2.size(); i++) {
+			
 			System.out.println(((UsageDTO) list2.get(i)).getCorename());
 			System.out.println(((UsageDTO) list2.get(i)).getCoreusage());
 			udto.setCorename(((UsageDTO) list2.get(i)).getCorename());
